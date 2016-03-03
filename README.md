@@ -1,3 +1,3 @@
 # KnpMenuServiceProvider
 
-Silex service provider for the KnpMenu library
+Silex service provider for the KnpMenu library.
