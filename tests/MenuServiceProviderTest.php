@@ -86,17 +86,6 @@ class KnpMenuServiceProviderTest extends TestCase
             return $root;
         };
 
-        $app['test.voter'] = $app->share(function (Application $app) {
-            $voter = new RouteVoter();
-            $voter->setRequest($app['request']);
-
-            return $voter;
-        });
-
-        $app['knp_menu.matcher.configure'] = $app->protect(function (Matcher $matcher) use ($app) {
-            $matcher->addVoter($app['test.voter']);
-        });
-
         $app->get('/twig', function (Application $app) {
             return $app['twig']->render('main', array('renderer' => 'twig'));
         })->bind('homepage');

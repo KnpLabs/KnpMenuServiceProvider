@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+* Register the RouteVoter by default
+
+### Removed
+
+* Removed support for Symfony 2.3 components (which are unmaintained already), to get the RequestStack support.
+
 ## [1.0.1] - 2017-08-22
 
 ### Fixed

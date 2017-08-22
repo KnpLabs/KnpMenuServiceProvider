@@ -3,6 +3,7 @@
 namespace Knp\Menu\Silex;
 
 use Knp\Menu\Integration\Symfony\RoutingExtension;
+use Knp\Menu\Matcher\Voter\RouteVoter;
 use Silex\Application;
 use Silex\ServiceProviderInterface;
 use Knp\Menu\Matcher\Matcher;
@@ -32,11 +33,19 @@ class MenuServiceProvider implements ServiceProviderInterface
         $app['knp_menu.matcher'] = $app->share(function() use ($app) {
             $matcher = new Matcher();
 
+            if (isset($app['knp_menu.voter.router'])) {
+                $matcher->addVoter($app['knp_menu.voter.router']);
+            }
+
             if (isset($app['knp_menu.matcher.configure'])) {
                 $app['knp_menu.matcher.configure']($matcher);
             }
 
             return $matcher;
+        });
+
+        $app['knp_menu.voter.router'] = $app->share(function() use ($app) {
+            return new RouteVoter($app['request_stack']);
         });
 
         $app['knp_menu.renderer.list'] = $app->share(function() use ($app) {
