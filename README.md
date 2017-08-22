@@ -2,6 +2,11 @@
 
 Silex service provider for the KnpMenu library.
 
+[![Build Status](https://travis-ci.org/KnpLabs/KnpMenuServiceProvider.svg)](http://travis-ci.org/KnpLabs/KnpMenuServiceProvider)
+[![Latest Stable Version](https://poser.pugx.org/knplabs/knp-menu-silex/v/stable.svg)](https://packagist.org/packages/knplabs/knp-menu-silex)
+[![Latest Unstable Version](https://poser.pugx.org/knplabs/knp-menu-silex/v/unstable.svg)](https://packagist.org/packages/knplabs/knp-menu-silex)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/KnpLabs/KnpMenuServiceProvider/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/KnpLabs/KnpMenuServiceProvider/?branch=master)
+
 ## Installation
 
 Installation is done using Composer:
