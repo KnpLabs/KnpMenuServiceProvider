@@ -66,6 +66,7 @@ class KnpMenuServiceProviderTest extends TestCase
     {
         $app = new Application();
         $app['debug'] = true;
+        unset($app['exception_handler']); // Better failure reporting, by letting exceptions be uncatched and reach PHPUnit
         $app->register(new TwigServiceProvider(), array(
             'twig.templates' => array('main' => '{{ knp_menu_render("my_menu", {"compressed": true}, renderer) }}'),
         ));
