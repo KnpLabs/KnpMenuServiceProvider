@@ -8,7 +8,6 @@ use Knp\Menu\Silex\MenuServiceProvider;
 use PHPUnit\Framework\TestCase;
 use Silex\Application;
 use Silex\Provider\TwigServiceProvider;
-use Silex\Provider\UrlGeneratorServiceProvider;
 use Symfony\Component\HttpFoundation\Request;
 
 class KnpMenuServiceProviderTest extends TestCase
@@ -73,7 +72,6 @@ class KnpMenuServiceProviderTest extends TestCase
         $app->register(new MenuServiceProvider(), array(
             'knp_menu.menus' => array('my_menu' => 'test.menu.my'),
         ));
-        $app->register(new UrlGeneratorServiceProvider());
 
         $app['test.menu.my'] = function (Application $app) {
             /** @var $factory \Knp\Menu\FactoryInterface */
@@ -86,15 +84,17 @@ class KnpMenuServiceProviderTest extends TestCase
             return $root;
         };
 
-        $app['test.voter'] = $app->share(function (Application $app) {
+        $app['test.voter'] = function (Application $app) {
             $voter = new RouteVoter();
-            $voter->setRequest($app['request']);
+            $voter->setRequest($app['request_stack']->getMasterRequest());
 
             return $voter;
-        });
+        };
 
-        $app['knp_menu.matcher.configure'] = $app->protect(function (Matcher $matcher) use ($app) {
+        $app->extend('knp_menu.matcher', function(Matcher $matcher, Application $app) {
             $matcher->addVoter($app['test.voter']);
+
+            return $matcher;
         });
 
         $app->get('/twig', function (Application $app) {
