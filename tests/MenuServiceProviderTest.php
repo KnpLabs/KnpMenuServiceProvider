@@ -3,8 +3,8 @@
 namespace Knp\Menu\Silex\Tests;
 
 use Knp\Menu\Matcher\Matcher;
-use Knp\Menu\Integration\Silex\KnpMenuServiceProvider;
 use Knp\Menu\Matcher\Voter\RouteVoter;
+use Knp\Menu\Silex\MenuServiceProvider;
 use PHPUnit\Framework\TestCase;
 use Silex\Application;
 use Silex\Provider\TwigServiceProvider;
@@ -16,7 +16,7 @@ class KnpMenuServiceProviderTest extends TestCase
     public function testFactoryWithoutRouter()
     {
         $app = new Application();
-        $app->register(new KnpMenuServiceProvider());
+        $app->register(new MenuServiceProvider());
 
         $this->assertEquals('Knp\Menu\MenuFactory', get_class($app['knp_menu.factory']));
     }
@@ -24,7 +24,7 @@ class KnpMenuServiceProviderTest extends TestCase
     public function testTwigRendererNotRegistered()
     {
         $app = new Application();
-        $app->register(new KnpMenuServiceProvider());
+        $app->register(new MenuServiceProvider());
 
         $this->assertFalse(isset($app['knp_menu.renderer.twig']));
     }
@@ -33,7 +33,7 @@ class KnpMenuServiceProviderTest extends TestCase
     {
         $app = new Application();
         $app->register(new TwigServiceProvider());
-        $app->register(new KnpMenuServiceProvider());
+        $app->register(new MenuServiceProvider());
 
         $this->assertTrue(isset($app['knp_menu.renderer.twig']));
     }
@@ -70,7 +70,7 @@ class KnpMenuServiceProviderTest extends TestCase
         $app->register(new TwigServiceProvider(), array(
             'twig.templates' => array('main' => '{{ knp_menu_render("my_menu", {"compressed": true}, renderer) }}'),
         ));
-        $app->register(new KnpMenuServiceProvider(), array(
+        $app->register(new MenuServiceProvider(), array(
             'knp_menu.menus' => array('my_menu' => 'test.menu.my'),
         ));
         $app->register(new UrlGeneratorServiceProvider());
