@@ -25,7 +25,6 @@ use Knp\Menu\Silex\MenuServiceProvider;
 $app->register(new MenuServiceProvider());
 ```
 
-
 #### Parameters
 
 * **knp_menu.menus** (optional): an array of ``alias => id`` pair for the
@@ -42,6 +41,8 @@ $app->register(new MenuServiceProvider());
 * **knp_menu.renderer.list**: The ListRenderer
 * **knp_menu.renderer.twig**: The TwigRenderer (only when the Twig integration is available)
 * **knp_menu.menu_manipulator**: The MenuManipulator
+* **knp_menu.matcher**: The KnpMenu Matcher
+* **knp_menu.voter.route**: The RouteVoter registered in the matcher. Unset it from the container to unregister it.
 
 > **WARNING**
 > The Twig integration is available only when the MenuServiceProvider is registered
