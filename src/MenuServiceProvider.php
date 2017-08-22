@@ -38,6 +38,7 @@ class MenuServiceProvider implements ServiceProviderInterface
             }
 
             if (isset($app['knp_menu.matcher.configure'])) {
+                @trigger_error('Defining a "knp_menu.matcher.configure" to configure the matcher is deprecated since 1.1 and won\'t be supported in 2.0. Extend the "knp_menu.matcher" service instead.', E_USER_DEPRECATED);
                 $app['knp_menu.matcher.configure']($matcher);
             }
 

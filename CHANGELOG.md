@@ -15,6 +15,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 * Removed support for Symfony 2.3 components (which are unmaintained already), to get the RequestStack support.
 
+### Deprecated
+
+* Deprecated the "knp_menu.matcher.configure" callback in favor of extending the "knp_menu.matcher" service.
+
 ## [1.0.1] - 2017-08-22
 
 ### Fixed
