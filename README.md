@@ -38,7 +38,7 @@ $app->register(new MenuServiceProvider());
 #### Services
 
 * **knp_menu.factory**: The menu factory (it is a router-aware one if the
-  UrlGeneratorExtension is registered)
+  UrlGeneratorServiceProvider is registered)
 * **knp_menu.renderer.list**: The ListRenderer
 * **knp_menu.renderer.twig**: The TwigRenderer (only when the Twig integration is available)
 * **knp_menu.menu_manipulator**: The MenuManipulator
