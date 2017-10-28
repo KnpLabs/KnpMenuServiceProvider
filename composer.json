@@ -21,7 +21,7 @@
     ],
     "require": {
         "php":  ">=5.3.0",
-        "knplabs/knp-menu": "^2.3@dev",
+        "knplabs/knp-menu": "^2.0",
         "silex/silex": "^2.2",
         "symfony/http-kernel": "^2.4 || ^3.0"
     },
